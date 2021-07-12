@@ -48,8 +48,8 @@ class Shipment(models.Model):
     id = models.BigAutoField(primary_key=True)
     order = models.OneToOneField(Order, verbose_name='id', on_delete=models.PROTECT)
     products = models.ManyToManyField(Product)
-    send_date = models.DateField(auto_now=True)
-    delivery_date = models.DateTimeField(blank=True, null=True)
+    send_date = models.DateField(blank=True, null=True)
+    delivery_date = models.DateField(blank=True, null=True)
 
     class Meta:
         db_table = "shipment"

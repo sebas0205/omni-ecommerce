@@ -6,10 +6,10 @@ from models.models import Shipment
 class ShipmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shipment
-        fields = "__all__"
+        fields = [ "id" , "order", "products"]
 
 
 class ShipmentUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shipment
-        fields = ["order" , "products"]
+        fields = ["order", "products"]

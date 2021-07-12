@@ -88,6 +88,10 @@ DATABASES = {
         # 'PASSWORD': 'admin123',
         # 'HOST': 'omni-db.chnj7janf47x.us-east-1.rds.amazonaws.com',  # Or an IP Address that your DB is hosted on
         # 'PORT': '3306',
+        #'HOST': os.environ.get('DB_HOST'),
+        #'NAME': os.environ.get('DB_NAME'),
+        #'USER': os.environ.get('DB_USER'),
+        #'PASSWORD': os.environ.get('DB_PASS'),
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
 

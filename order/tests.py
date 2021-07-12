@@ -51,8 +51,14 @@ class OrderTest(APITestCase):
         url = reverse("ordenes:Orders_get_delete", args=[1])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
         self.assertEqual(response.data['id'], 1)
+
+    def test_get_order_by_user(self):
+        url = reverse("ordenes:orders_by_user", args=[1])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual(len(response.data), 2)
 
     def test_update(self):
         url = reverse("ordenes:Orders_update", args=[2])

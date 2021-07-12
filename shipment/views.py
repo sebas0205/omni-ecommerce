@@ -4,7 +4,8 @@ import datetime
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.response import Response
 
 from models.models import Shipment
 from shipment.serializer import ShipmentSerializer, ShipmentUpdateSerializer
@@ -13,7 +14,7 @@ from shipment.services.EmailService import send_email_delivery_shipmet, send_ema
 
 class ShipmentsCreateViewSet(generics.CreateAPIView):
     """
-        Creacion de un shipmento
+        Creacion de un shipment
     """
     serializer_class = ShipmentSerializer
     queryset = Shipment.objects.all()
@@ -54,23 +55,29 @@ class ShipmentsUpdateView(generics.UpdateAPIView):
     lookup_field = 'id'
 
 
-class ShipmentsSendViewSet(generics.UpdateAPIView):
+class ShipmentsSendViewSet(generics.RetrieveAPIView):
     serializer_class = ShipmentSerializer
     queryset = Shipment.objects.all()
+    lookup_field = 'id'
 
     def retrieve(self, request, *args, **kwargs):
         shipment = self.get_object()
-        shipment.send_date = datetime.today()
+        shipment.send_date = datetime.date.today()
         shipment.save()
-        asyncio.run(send_email_send_shipmet(shipment))
+        response = send_email_send_shipmet(shipment=shipment)
+        status_response = status.HTTP_200_OK if response["status"]=="OK" else status.HTTP_500_INTERNAL_SERVER_ERROR
+        return Response(response,status_response)
 
 
-class ShipmentsDeliveryViewSet(generics.UpdateAPIView):
+class ShipmentsDeliveryViewSet(generics.RetrieveAPIView):
     serializer_class = ShipmentSerializer
     queryset = Shipment.objects.all()
+    lookup_field= 'id'
 
     def retrieve(self, request, *args, **kwargs):
         shipment = self.get_object()
-        shipment.delivery_date = datetime.today()
+        shipment.delivery_date = datetime.date.today()
         shipment.save()
-        asyncio.run(send_email_delivery_shipmet(shipment))
+        response = send_email_delivery_shipmet(shipment)
+        status_response = status.HTTP_200_OK if response["status"] == "OK" else status.HTTP_500_INTERNAL_SERVER_ERROR
+        return Response(response, status_response)
