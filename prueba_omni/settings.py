@@ -37,10 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_spectacular',
+    'django_extensions',
     'authentication',
     'models',
-    'ecommerce',
     'product',
+    'order',
+    'payments',
+    'shipment'
 
 ]
 
@@ -79,12 +82,14 @@ WSGI_APPLICATION = 'prueba_omni.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'omni-db',
-        'USER': 'admin',
-        'PASSWORD': 'admin123',
-        'HOST': 'omni-db.chnj7janf47x.us-east-1.rds.amazonaws.com',  # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'omni-db',
+        # 'USER': 'admin',
+        # 'PASSWORD': 'admin123',
+        # 'HOST': 'omni-db.chnj7janf47x.us-east-1.rds.amazonaws.com',  # Or an IP Address that your DB is hosted on
+        # 'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
 
     }
 }

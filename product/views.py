@@ -7,7 +7,7 @@ from models.models import Product
 from product.serializer import ProductSerializer, ProductUpdateSerializer
 
 
-class ProductsCreateViewSet(generics.ListAPIView):
+class ProductsCreateViewSet(generics.CreateAPIView):
     """
         Creacion de un producto
     """

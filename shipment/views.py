@@ -6,9 +6,9 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework import generics
 
-from ecommerce.services.EmailService import send_email_send_shipmet, send_email_delivery_shipmet
 from models.models import Shipment
 from shipment.serializer import ShipmentSerializer, ShipmentUpdateSerializer
+from shipment.services.EmailService import send_email_delivery_shipmet, send_email_send_shipmet
 
 
 class ShipmentsCreateViewSet(generics.CreateAPIView):
