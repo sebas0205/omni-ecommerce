@@ -5,7 +5,7 @@ El reto consiste en crear una api donde se pueda ralizar el flujo basico de un e
 
 ## Implementación
 
-La solucion se desarrollo  utilizando :
+La solucion se desarrolló  utilizando las siguientes herramientas:
 - Python 3.8.
 - Django=3.2.5
 - djangorestframework=3.12.4
@@ -14,11 +14,11 @@ La solucion se desarrollo  utilizando :
 
 ## Ejecución
 
-Para iniciar el servicio se base de datos y de la aplicacion se  debe ejecutar :
+Para iniciar el servicio se base de datos y de la aplicación se  debe ejecutar :
 ```
 docker-compose up -d
 ```
-Los servicios estan expuestos y se pueden ver por medio de Swagger en la url :
+Los servicios serán expuestos y se podrán ver por medio de Swagger en la url :
 
 http://127.0.0.1:8000/api/schema/swagger-ui/
 
