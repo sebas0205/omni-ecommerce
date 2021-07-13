@@ -64,7 +64,8 @@ class ShipmentsSendViewSet(generics.RetrieveAPIView):
         shipment = self.get_object()
         shipment.send_date = datetime.date.today()
         shipment.save()
-        response = send_email_send_shipmet(shipment=shipment)
+        len(shipment.products.all())
+        response = asyncio.run(send_email_send_shipmet(shipment=shipment))
         status_response = status.HTTP_200_OK if response["status"]=="OK" else status.HTTP_500_INTERNAL_SERVER_ERROR
         return Response(response,status_response)
 
@@ -78,6 +79,6 @@ class ShipmentsDeliveryViewSet(generics.RetrieveAPIView):
         shipment = self.get_object()
         shipment.delivery_date = datetime.date.today()
         shipment.save()
-        response = send_email_delivery_shipmet(shipment)
+        response = asyncio.run(send_email_delivery_shipmet(shipment))
         status_response = status.HTTP_200_OK if response["status"] == "OK" else status.HTTP_500_INTERNAL_SERVER_ERROR
         return Response(response, status_response)

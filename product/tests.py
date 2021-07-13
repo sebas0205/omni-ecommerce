@@ -12,10 +12,11 @@ from models.models import Product
 from product.serializer import ProductSerializer
 
 
-class ProductTest(APITestCase):
+def create_enviroment() :
+    Product.objects.create(id=777, name="test", price=2000)
 
-    def setUp(self) -> None:
-        Product.objects.create(id=777, name="test", price=2000)
+
+class ProductTest(APITestCase):
 
     def test_create(self):
         url = reverse("productos:products_create")
@@ -36,6 +37,7 @@ class ProductTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_get_product_by_id(self):
+        create_enviroment()
         url = reverse("productos:products_get_delete", args=[777])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -44,6 +46,7 @@ class ProductTest(APITestCase):
         self.assertEqual(product.name, "test")
 
     def test_update(self):
+        create_enviroment()
         url = reverse("productos:products_update", args=[777])
 
         payload = {

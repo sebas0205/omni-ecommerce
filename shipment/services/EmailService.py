@@ -5,15 +5,16 @@ from django.core.mail import EmailMessage
 
 from prueba_omni import settings
 
-NOTIFICATION_SEND_MAIL_SUBJECT = "Notificaion del envio de {orden}"
-NOTIFICATION_SEND_MAIL_MESSAGE = "Se informa que  la {orden}  con los productos {productos} fue enviado el dia {fecha} "
+NOTIFICATION_SEND_MAIL_SUBJECT = "Notificaion del envio de Orden {orden}"
+NOTIFICATION_SEND_MAIL_MESSAGE = "Se informa que  la Orden {orden}  con los productos {productos} fue enviado el dia " \
+                                 "{fecha} "
 
-NOTIFICATION_DELIVERY_MAIL_SUBJECT = "Notificaion del recepcion de {orden}"
-NOTIFICATION_DELIVERY_MAIL_MESSAGE = "Se informa que se ha recibido el paquete  de la {orden}  con los productos {" \
-                                     "productos} el dia {fecha} "
+NOTIFICATION_DELIVERY_MAIL_SUBJECT = "Notificaion del recepcion de la Orden {orden}"
+NOTIFICATION_DELIVERY_MAIL_MESSAGE = "Se informa que se ha recibido el paquete  de la Orden {orden}  con los " \
+                                     "productos {productos} el dia {fecha} "
 
 
-def send_email_send_shipmet(shipment):
+async def send_email_send_shipmet(shipment):
     try:
 
         list_products = [product.name for product in shipment.products.all()]
@@ -35,7 +36,7 @@ def send_email_send_shipmet(shipment):
 
     return response
 
-
+@sync_to_async()
 def send_email_delivery_shipmet(shipment):
     try:
 

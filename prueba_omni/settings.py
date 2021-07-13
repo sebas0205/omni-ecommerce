@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,19 +82,12 @@ WSGI_APPLICATION = 'prueba_omni.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'omni-db',
-        # 'USER': 'admin',
-        # 'PASSWORD': 'admin123',
-        # 'HOST': 'omni-db.chnj7janf47x.us-east-1.rds.amazonaws.com',  # Or an IP Address that your DB is hosted on
-        # 'PORT': '3306',
-        #'HOST': os.environ.get('DB_HOST'),
-        #'NAME': os.environ.get('DB_NAME'),
-        #'USER': os.environ.get('DB_USER'),
-        #'PASSWORD': os.environ.get('DB_PASS'),
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'PORT': os.environ.get('DB_PORT')
     }
 }
 
