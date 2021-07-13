@@ -34,7 +34,7 @@ El modelo ER creado  para la solución es el siguiente :
 ## Coverage
 
 Para realizar el coverage se utilizó covergage.py , obteniendo un porcentage del 92%
-La información sobre el coverage puede ser encontrada en la carpeta [acá](htmlcov)
+La información sobre el coverage puede ser encontrada [acá](htmlcov)
 
 
 
