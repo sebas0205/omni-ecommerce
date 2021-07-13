@@ -9,14 +9,14 @@ La solucion se desarrollo  utilizando :
 - Python 3.8.
 - Django=3.2.5
 - djangorestframework=3.12.4
-- MySql ( AWS RDS).
+- Postgres 11 .
 
 
 ## Ejecución
 
-Para iniciar el servicio se debe ejecutar :
+Para iniciar el servicio se base de datos y de la aplicacion se  debe ejecutar :
 ```
-java -jar mutants.jar
+docker-compose up -d
 ```
 Los servicios estan expuestos y se pueden ver por medio de Swagger en la url :
 
